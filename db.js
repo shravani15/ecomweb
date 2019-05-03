@@ -1,8 +1,8 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
  
-var sequelize = new Sequelize('ecomdb', 'shru', 'shravaniK100!', {
+const db = new Sequelize('ecomdb', 'shru', 'shravaniK100!', {
     host: 'localhost',
-    port:3004,
+   
     dialect:'mysql',
     pool : {
         min :0,
@@ -10,43 +10,48 @@ var sequelize = new Sequelize('ecomdb', 'shru', 'shravaniK100!', {
     }
 })
 
-var User = sequelize.define('users', {
+
+
+const User = db.define('users', {
     id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey :true
+        primaryKey :true,
+        allowNull: false,
+    
+        
     },
     name: {
-        type:sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
 
 
     }
 })
 
-var Product = sequelize.define('products', {
+const Product = db.define('products', {
     id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey :true
     },
 
     name: {
-        name: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
-    manufacturer: sequelize.STRING,
+    manufacturer: Sequelize.STRING,
     price : {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
     }
 })
 
-sequelize.sync()
+db.sync()
     .then(()=> console.log("database has been synced"))
     .catch((err) => console.log("error creating database"))
 
-exports = module.exports = {
+module.exports = {
     User, Product
 }
