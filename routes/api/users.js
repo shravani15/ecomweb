@@ -3,7 +3,7 @@ const route = require('express').Router()
 
 route.get('/',(req,res) => {
 
-    user.findAll()
+    User.findAll()
         .then((users)=> {
             res.status(200).send(users)
         })
@@ -18,12 +18,11 @@ route.get('/',(req,res) => {
 
     User.create({
         name: req.body.name
-    }).then((user) =>{
+    }).then((user) => {
         res.status(201).send(user)
     }).catch((err)=> {
-        res.status(501).send({
-            error: "could not add new user"
-        })
+        res.status(501);
+        console.log(err)
     })
  })
 

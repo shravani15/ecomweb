@@ -4,6 +4,6 @@ route.use('/users', require('./users'))
 route.use('/products', require('./products'))
 
 
-exports = module.exports= {
+module.exports = {
     route
 }
